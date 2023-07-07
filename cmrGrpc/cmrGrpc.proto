@@ -1,0 +1,22 @@
+syntax = "proto3";
+
+package cmrGrpc;
+
+option go_package = "example.com/cmrGrpc;cmrGrpc";
+
+service CmrGrpc {
+
+    rpc CreateNewCollection (NewCollection) returns (Collection) {}
+
+}
+
+message NewCollection {
+    string shortname = 1;
+    int32 version = 2;
+}
+
+message Collection {
+    string shortname = 1;
+    int32 version = 2;
+    string conceptId = 3;
+}
