@@ -4,6 +4,7 @@ import (
 	"context"
 	"log"
 	"time"
+
 	pb "example.com/cmrGrpc/cmrGrpc"
 	"google.golang.org/grpc"
 )
@@ -11,7 +12,8 @@ import (
 const (
 	address = "localhost:50051"
 )
-func main(){
+
+func main() {
 	// connect to the gRPC server
 	// withBlock means functino will not return until the conn is mate blocking step to Dial
 	conn, err := grpc.Dial(address, grpc.WithInsecure(), grpc.WithBlock())
@@ -19,7 +21,7 @@ func main(){
 	if err != nil {
 		log.Fatalf("Did not connect: %v", err)
 	}
-	// used to delay the execution of a function until the surrounding function completes 
+	// used to delay the execution of a function until the surrounding function completes
 	// basically an await
 	defer conn.Close()
 	client := pb.NewCmrGrpcClient(conn)

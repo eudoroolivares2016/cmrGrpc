@@ -1,12 +1,12 @@
 package main
 
 import (
-
 	"context"
-	"log"
 	"fmt"
-	"net"
+	"log"
 	"math/rand"
+	"net"
+
 	pb "example.com/cmrGrpc/cmrGrpc"
 	"google.golang.org/grpc"
 )
@@ -16,17 +16,17 @@ const (
 )
 
 type CmrGrpcServer struct {
-
 	pb.UnimplementedCmrGrpcServer
 }
+
 // reciever pointer of type CmrGrpcServer
 // we are overriding the function that we declared in the proto buffer so that
-// we know what kind of   
+// we know what kind of
 func (s *CmrGrpcServer) CreateNewCollection(ctx context.Context, in *pb.NewCollection) (*pb.Collection, error) {
-	log.Printf("Recieved: %v", in.GetShortname())
+	log.Printf("Received: %v", in.GetShortname())
 
 	var concept_id_num int32 = int32(rand.Intn(90000) + 10000)
-	
+
 	concept_id_str := fmt.Sprintf("%d", concept_id_num)
 
 	// Create the base string
@@ -56,7 +56,3 @@ func main() {
 }
 
 // implementing the gRPC reciver method from the proto file
- 
-
-
-
